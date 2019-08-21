@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { BrowserRouter as Router } from "react-router-dom";
 
 import colors from './styles/colors'
 
@@ -15,9 +16,11 @@ const muiTheme = getMuiTheme({
 })
 
 ReactDOM.render(
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <App />
-  </MuiThemeProvider>
+  <Router>
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <App/>
+    </MuiThemeProvider>
+  </Router>
   , document.getElementById('root'))
 
 serviceWorker.unregister();
