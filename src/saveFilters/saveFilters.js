@@ -2,7 +2,6 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField'
 
 /**
@@ -27,10 +26,15 @@ export default class DialogExampleDialogDatePicker extends React.Component {
     };
 
     handleSave = () =>{
-        localStorage.setItem('search ', JSON.stringify({
-            name: this.state.name,
-            paramas: this.state.search
-        }))
+        let searchs
+        localStorage.getItem('searchs') ? searchs = JSON.parse(localStorage.getItem('searchs')) : searchs = []
+        searchs.unshift(
+            {
+                name: this.state.name,
+                paramas: this.state.search
+            }
+        )
+        localStorage.setItem('searchs', JSON.stringify(searchs))
         this.handleClose()
     }
 
@@ -45,7 +49,7 @@ export default class DialogExampleDialogDatePicker extends React.Component {
         <FlatButton
             label="Ok"
             primary={true}
-            keyboardFocused={true}
+            keyboardFocused={false}
             onClick={this.handleSave}
         />,
         ];
