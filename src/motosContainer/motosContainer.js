@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
 import { Container } from './styles'
-import Moto from './../moto/moto'
-import motosServices from './motosContainer.services'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import Loading from './../loading/loading'
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
+import AutoComplete from 'material-ui/AutoComplete'
+import Moto from './../moto/moto'
+import Loading from './../loading/loading'
+import motosServices from './motosContainer.services'
+import FormDialog from '../saveFilters/saveFilters'
 
 const style = {
   margin: 12,
@@ -27,10 +27,22 @@ const style = {
   searchButton: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-
+    justifyContent: 'center',
+  },
+  buttons: {
+    margin: 5
   }
 };
+
+const Brand = ["Aprilia","Arc","Bajaj","Benelli ","BMW","Buell","Cagiva","Can-Am","Confederate ","Derbi","Ducati","Gas Gas","Genuine Scooter Company",
+"Harley-Davidson","Hero Motocorp","Honda","Husqvarna","Hyosung","Indian","Kawasaki","KTM","Moto-Guzzi","MV-Agusta","MZ","Peugeot","Piaggio","Royal Enfield",
+"Suzuki","Triumph","TVS","Vespa","Victory","Yamaha","Zero"]
+
+const Province = ['Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',
+'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','La Coruña','Cuenca','Gerona','Granada','Guadalajara',
+'Guipúzcoa','Huelva','Huesca','Islas Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
+'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
+'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
 
 class motosContainer extends Component {
 
@@ -41,11 +53,9 @@ class motosContainer extends Component {
       model: '',
       location: '',
       brand:'',
-      loading: false
-      
+      loading: false,
     }
   }
-  
 
   handleModelChange = event => {
     this.setState({
@@ -53,21 +63,23 @@ class motosContainer extends Component {
     });
   }
 
-  handleLocationChange = event => {
+  handleLocationChange = value => {
     this.setState({
-      location: event.target.value
+      location: value
     });
   }
 
-  handleBrandChange = event => {
+  handleBrandChange = value => {
     this.setState({
-      brand: event.target.value
+      brand: value
     });
   }
   
   search = () => {
+    console.log(this.state)
     this.setState({motos:[]})
     this.setState({loading: true})
+    
     motosServices.getMotos({ model: this.state.model, location: this.state.location, brand: this.state.brand }).then(response => {
       this.setState({ motos: response.data.results })
       this.setState({loading: false})
@@ -79,12 +91,38 @@ class motosContainer extends Component {
       <div>
         <Paper style={style.card}>
           <div style={style.searchInputs}>
-            <TextField hintText="Brand" floatingLabelText="Brand" style={style} value={this.state.brand} onChange={this.handleBrandChange}/>
+            {/* <TextField hintText="Brand" floatingLabelText="Brand" style={style} value={this.state.brand} onChange={this.handleBrandChange}/> */}
+            <AutoComplete
+              hintText="Brand"
+              floatingLabelText="Brand"
+              filter={AutoComplete.fuzzyFilter}
+              dataSource={Brand}
+              maxSearchResults={5}
+              onNewRequest={this.handleBrandChange}
+              style={style}
+            />
             <TextField hintText="Model" floatingLabelText="Model" style={style} value={this.state.model} onChange={this.handleModelChange}/>
-            <TextField hintText="Location" floatingLabelText="Location" style={style} value={this.state.location} onChange={this.handleLocationChange}/>
+            <AutoComplete
+              hintText="Location"
+              floatingLabelText="Location"
+              filter={AutoComplete.fuzzyFilter}
+              dataSource={Province}
+              maxSearchResults={5}
+              onNewRequest={this.handleLocationChange}
+              style={style}
+            />
           </div>
           <div style={style.searchButton}>
-            <RaisedButton label="Buscar" primary={true} onClick={this.search}/>
+            <RaisedButton label="Buscar" primary={true} onClick={this.search} style={style.buttons}/>
+            {
+              this.state.motos.length > 0 ? <FormDialog search={
+                {
+                  model: this.state.model,
+                  brand: this.state.brand,
+                  location: this.state.location
+                }
+              }/> : ''
+            }
           </div>
         </Paper >
         <Container>

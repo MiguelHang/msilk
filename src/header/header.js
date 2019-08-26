@@ -27,7 +27,8 @@ class Header extends Component {
           showMenuIconButton={true}
           onLeftIconButtonClick={this.handleToggle}
         />
-        <Drawer 
+        <Drawer
+            docked={false}
             open={this.state.open}
             onRequestChange={() => this.setState({open: false})}
             containerStyle={styles.navBar}
