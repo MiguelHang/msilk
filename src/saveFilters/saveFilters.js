@@ -26,15 +26,15 @@ export default class DialogExampleDialogDatePicker extends React.Component {
     };
 
     handleSave = () =>{
-        let searchs
-        localStorage.getItem('searchs') ? searchs = JSON.parse(localStorage.getItem('searchs')) : searchs = []
-        searchs.unshift(
+        let searches
+        localStorage.getItem('searches') ? searches = JSON.parse(localStorage.getItem('searches')) : searches = []
+        searches.unshift(
             {
                 name: this.state.name,
-                paramas: this.state.search
+                params: this.state.search
             }
         )
-        localStorage.setItem('searchs', JSON.stringify(searchs))
+        localStorage.setItem('searches', JSON.stringify(searches))
         this.handleClose()
     }
 

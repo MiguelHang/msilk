@@ -5,7 +5,8 @@ import MenuItem from 'material-ui/MenuItem';
 import { Link } from "react-router-dom";
 
 const styles = {
-  navBar: {'top': AppBar.height}
+  navBar: {'top': AppBar.height},
+  links: {'textDecoration': 'none'}
 }
 
 class Header extends Component {
@@ -33,9 +34,9 @@ class Header extends Component {
             onRequestChange={() => this.setState({open: false})}
             containerStyle={styles.navBar}
         >
-          <Link to="/"><MenuItem onClick={this.handleToggle}>Search</MenuItem></Link>
-          <Link to="/myfilters"><MenuItem onClick={this.handleToggle}>My filters</MenuItem></Link>
-          <Link to="/favorites"><MenuItem onClick={this.handleToggle}>Favorites</MenuItem></Link>
+          <Link style = {styles.links} to="/search"><MenuItem onClick={this.handleToggle}>Search</MenuItem></Link>
+          <Link style = {styles.links} to="/myfilters"><MenuItem onClick={this.handleToggle}>My filters</MenuItem></Link>
+          <Link style = {styles.links} to="/favorites"><MenuItem onClick={this.handleToggle}>Favorites</MenuItem></Link>
         </Drawer>        
       </div>
     )

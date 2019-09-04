@@ -20,6 +20,7 @@ const AppContainer = () => (
   <MainSection>
     <Switch>
       <Route exact path="/" component={MotoContainer} />
+      <Route exact path="/search" component={MotoContainer} />
       <Route path="/myfilters" component={MyFilter} />
       <Route path="/favorites" component={Favorite} />
     </Switch>

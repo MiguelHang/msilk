@@ -57,6 +57,19 @@ class motosContainer extends Component {
     }
   }
 
+  componentDidMount(){
+    if(this.props.location.state){
+      const { model, brand, location } = this.props.location.state
+      this.setState({
+        model,
+        brand,
+        location
+      }, () => {
+        this.search()
+      })
+    }
+  }
+
   handleModelChange = event => {
     this.setState({
       model: event.target.value
@@ -91,28 +104,32 @@ class motosContainer extends Component {
       <div>
         <Paper style={style.card}>
           <div style={style.searchInputs}>
-            {/* <TextField hintText="Brand" floatingLabelText="Brand" style={style} value={this.state.brand} onChange={this.handleBrandChange}/> */}
             <AutoComplete
-              hintText="Brand"
-              floatingLabelText="Brand"
-              filter={AutoComplete.fuzzyFilter}
-              dataSource={Brand}
-              maxSearchResults={5}
-              onNewRequest={this.handleBrandChange}
-              style={style}
+              hintText = "Brand"
+              floatingLabelText = "Brand"
+              filter = { AutoComplete.fuzzyFilter }
+              dataSource = { Brand }
+              maxSearchResults = { 5 }
+              onNewRequest = { this.handleBrandChange }
+              style = { style }
+              searchText = { this.state.brand }
+              onUpdateInput={this.handleBrandChange}
             />
-            <TextField hintText="Model" floatingLabelText="Model" style={style} value={this.state.model} onChange={this.handleModelChange}/>
+            <TextField hintText = "Model" floatingLabelText = "Model" style = { style } value = { this.state.model } onChange = { this.handleModelChange } />
             <AutoComplete
               hintText="Location"
               floatingLabelText="Location"
               filter={AutoComplete.fuzzyFilter}
-              dataSource={Province}
-              maxSearchResults={5}
-              onNewRequest={this.handleLocationChange}
-              style={style}
+              dataSource = { Province } 
+              maxSearchResults = {5}
+              onNewRequest = { this.handleLocationChange }
+              style = { style }
+              searchText = { this.state.location }
+              onUpdateInput = { this.handleLocationChange }
+
             />
           </div>
-          <div style={style.searchButton}>
+          <div style= { style.searchButton } >
             <RaisedButton label="Buscar" primary={true} onClick={this.search} style={style.buttons}/>
             {
               this.state.motos.length > 0 ? <FormDialog search={
