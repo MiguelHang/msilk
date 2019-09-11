@@ -34,9 +34,11 @@ const style = {
   }
 };
 
-const Brand = ["Aprilia","Arc","Bajaj","Benelli ","BMW","Buell","Cagiva","Can-Am","Confederate ","Derbi","Ducati","Gas Gas","Genuine Scooter Company",
-"Harley-Davidson","Hero Motocorp","Honda","Husqvarna","Hyosung","Indian","Kawasaki","KTM","Moto-Guzzi","MV-Agusta","MZ","Peugeot","Piaggio","Royal Enfield",
-"Suzuki","Triumph","TVS","Vespa","Victory","Yamaha","Zero"]
+const Brand = [
+  "Adler","AEON","AERMACCHI","AJP","AJS","ALTA MOTORS","AMAZONAS","APRILIA","ARCTIC CAT","ARIEL","ATK","BAJAJ","BARIGO","BENELLI","BETA","BFG","Big Bear Choppers","Big Dog","BIMOTA","BMW","BORILE","BOSS HOSS","BRITTEN","BROUGH SUPERIOR","BSA","BUELL","CAGIVA","CAN-AM/ BRP","CANNONDALE","CARVER","CCM","CEMEC","CFMOTO","CHAK MOTORS","Christini","CONDOR","CONFEDERATE","CPI","CRS","DAELIM","Dafra Motos","DERBI","DNEPR","DUCATI","EBR Motorcycles","ECOSSE","ENERGICA","EXCELSIOR","FISCHER","GAS GAS","GEELY","GG MOTORRAD","GHEZZI-BRIAN","GILERA","HARLEY DAVIDSON","HARTFORD","HENDERSON","HERCULES","HERO","HESKETH","HIGHLAND","HODAKA","HONDA","HOREX","HUSABERG","HUSQVARNA","HYOSUNG","INDIAN","ITALJET","IZH","JAWA","JUNAK","KANUNI","KASINSKI","KAWASAKI","KTM","KYMCO","LAVERDA","LEHMAN TRIKES","LIFAN","LINHAI","MAGNI","MAICO","MALAGUTI","MARUSHO-LILAC","MASH","MATCHLESS","MBK","MEGELLI","MIDUAL","MIKILON","MODENAS","MONDIAL","MOTO GUZZI","MOTO MORINI","MOTOCZYSZ","MOTORHISPANIA","MOTUS","MTT","MUNCH","MV AGUSTA","MZ","NCR","NORTON","Orange County Choppers","OSSA","PETRONAS","PEUGEOT","PGO","PIAGGIO","POLARIS","PUCH","RIEJU MOTORS","ROYAL ENFIELD","SACHS","SCORPA","SHERCO","SIMSON","Super SOCO","SUZUKI","SWM","SYM","TGB","TRIUMPH","URAL","VELOCETTE","VENTO","VERUCCI","VESPA","VICTORY","VINCENT HRD","VOR","VOXAN","VYRUS","WAKAN","WHIZZER","WRM","YAMAHA","ZERO","ZUNDAPP"
+]
+
+const models = {}
 
 const Province = ['Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',
 'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','La Coruña','Cuenca','Gerona','Granada','Guadalajara',
